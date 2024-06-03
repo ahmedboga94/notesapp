@@ -1,0 +1,4 @@
+enum AddUpdateNoteEnum {
+  addNoteView,
+  editNoteView,
+}
