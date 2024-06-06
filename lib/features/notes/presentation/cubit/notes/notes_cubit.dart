@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notesapp/core/app_colors.dart';
 
 import '../../../domain/entities/note_entity.dart';
 import '../../../domain/usecases/add_note_use_case.dart';
@@ -24,7 +25,7 @@ class NotesCubit extends Cubit<NotesState> {
     required this.deleteNoteUseCase,
   }) : super(InitialNotesState());
 
-  Color currentColor = const Color(0xff6153CC);
+  Color selectedColor = AppColors.colorsList[0];
 
   void getNotes() {
     Either<Failure, List<NoteEntity>> notes = getNotesUseCase.call();
@@ -35,13 +36,13 @@ class NotesCubit extends Cubit<NotesState> {
   }
 
   void addNote(NoteEntity addNote) {
-    addNote.color = currentColor.value;
+    addNote.color = selectedColor.value;
     Either<Failure, Unit> note = addNoteUseCase.call(addNote);
     foldMethod(note);
   }
 
   void updateNote(NoteEntity updateNote) {
-    updateNote.color = currentColor.value;
+    updateNote.color = selectedColor.value;
     Either<Failure, Unit> note = updateNoteUseCase.call(updateNote);
     foldMethod(note);
   }
@@ -52,8 +53,7 @@ class NotesCubit extends Cubit<NotesState> {
   }
 
   void changeColor(Color color) {
-    currentColor = color;
-    emit(ColorChangedState(color));
+    selectedColor = color;
   }
 
   void foldMethod(Either<Failure, Unit> note) {

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:notesapp/core/app_colors.dart';
 
 import '../../../../core/enums/add_edit_note_enum.dart';
 import '../../domain/entities/note_entity.dart';
 import '../cubit/notes/notes_cubit.dart';
-import 'color_item.dart';
+import 'color_items_list_view.dart';
 
 class AddUpdateNoteForm extends StatefulWidget {
   final AddUpdateNoteEnum addEditNoteEnum;
   final NoteEntity? noteEntity;
+
   const AddUpdateNoteForm(
       {super.key, required this.addEditNoteEnum, this.noteEntity});
 
@@ -52,7 +52,9 @@ class _AddUpdateNoteFormState extends State<AddUpdateNoteForm> {
             maxLines: 7,
           ),
           const SizedBox(height: 20),
-          ColorItemsListView(),
+          ColorItemsListView(
+              addEditNoteEnum: widget.addEditNoteEnum,
+              noteEntity: widget.noteEntity),
           const SizedBox(height: 30),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.6,
@@ -91,45 +93,6 @@ class _AddUpdateNoteFormState extends State<AddUpdateNoteForm> {
           ),
           const SizedBox(height: 8),
         ],
-      ),
-    );
-  }
-}
-
-class ColorItemsListView extends StatefulWidget {
-  const ColorItemsListView({super.key});
-
-  @override
-  State<ColorItemsListView> createState() => _ColorItemsListViewState();
-}
-
-class _ColorItemsListViewState extends State<ColorItemsListView> {
-  int currentTndex = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 28 * 2,
-      child: ListView.separated(
-        itemCount: AppColors.colorsList.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return Builder(builder: (context) {
-            // print(index);
-            print(currentTndex);
-            return GestureDetector(
-                onTap: () {
-                  currentTndex = index;
-                  BlocProvider.of<NotesCubit>(context).currentColor =
-                      AppColors.colorsList[currentTndex];
-                  setState(() {});
-                },
-                child: ColorItem(
-                    color: AppColors.colorsList[index],
-                    isSelected: currentTndex == index));
-          });
-        },
-        separatorBuilder: (context, index) => const SizedBox(width: 8),
       ),
     );
   }

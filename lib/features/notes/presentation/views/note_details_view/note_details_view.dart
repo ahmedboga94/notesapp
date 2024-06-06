@@ -13,11 +13,6 @@ class NoteDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // DateTime dateTime =
-    //     DateTime.fromMillisecondsSinceEpoch(widget.noteEntity.id.toInt());
-    // String formattedDate = DateFormat("MMMM dd, yy").format(dateTime);
-    // String formattedTime = DateFormat("hh:mma").format(dateTime);
-
     return Scaffold(
       appBar: AppBar(title: const Text("Note View")),
       floatingActionButton: FloatingActionButton(
@@ -30,8 +25,6 @@ class NoteDetailsView extends StatelessWidget {
             const EdgeInsets.only(right: 14, left: 14, top: 14, bottom: 40),
         child: Center(
           child: Card(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18.0)),
             color: Color(noteEntity.color),
             child: SizedBox(
               width: double.infinity,
@@ -52,6 +45,7 @@ class NoteDetailsView extends StatelessWidget {
                               .titleSmall!
                               .copyWith(color: AppColors.darkColor)),
                     ),
+                    const Divider(color: AppColors.lessdarkColor),
                     Text(noteEntity.subTitle,
                         style: Theme.of(context)
                             .textTheme
@@ -64,15 +58,6 @@ class NoteDetailsView extends StatelessWidget {
           ),
         ),
       ),
-      // bottomNavigationBar: SizedBox(
-      //   height: MediaQuery.of(context).size.height * 0.1,
-      //   child: Center(
-      //     child: ElevatedButton(
-      //         onPressed: () => GoRouter.of(context)
-      //             .push(AppRoutes.noteEditView, extra: noteEntity),
-      //         child: const Text("Update")),
-      //   ),
-      // ),
     );
   }
 }

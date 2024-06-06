@@ -19,6 +19,9 @@ class AppThemes {
       centerTitle: true,
       elevation: 0.5,
     ),
+    cardTheme: CardTheme(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0))),
     radioTheme: RadioThemeData(
         fillColor: WidgetStateProperty.all(AppColors.primaryColor)),
     textSelectionTheme:
@@ -64,6 +67,9 @@ class AppThemes {
       centerTitle: true,
       elevation: 0.5,
     ),
+    cardTheme: CardTheme(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0))),
     radioTheme: RadioThemeData(
         fillColor: WidgetStateProperty.all(AppColors.primaryColor)),
     textSelectionTheme:

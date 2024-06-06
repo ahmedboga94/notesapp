@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notesapp/core/app_colors.dart';
 
 class ColorItem extends StatelessWidget {
   final bool isSelected;
@@ -7,11 +8,12 @@ class ColorItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return isSelected
-        ? CircleAvatar(
-            radius: 30,
-            backgroundColor: Colors.green,
-            child: CircleAvatar(radius: 25, backgroundColor: color))
-        : CircleAvatar(radius: 30, backgroundColor: color);
+    return CircleAvatar(
+        radius: 30,
+        backgroundColor: isSelected ? AppColors.lightGreyColor : color,
+        child: CircleAvatar(
+          radius: 26,
+          backgroundColor: color,
+        ));
   }
 }
