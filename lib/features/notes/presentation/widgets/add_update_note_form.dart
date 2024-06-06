@@ -120,7 +120,7 @@ class _ColorItemsListViewState extends State<ColorItemsListView> {
             return GestureDetector(
                 onTap: () {
                   currentTndex = index;
-                  BlocProvider.of<NotesCubit>(context).colors =
+                  BlocProvider.of<NotesCubit>(context).currentColor =
                       AppColors.colorsList[currentTndex];
                   setState(() {});
                 },

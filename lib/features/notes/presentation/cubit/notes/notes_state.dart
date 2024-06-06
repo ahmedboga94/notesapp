@@ -15,3 +15,9 @@ final class FailureNotesState extends NotesState {
 
   FailureNotesState(this.errorMsg);
 }
+
+class ColorChangedState extends NotesState {
+  final Color color;
+
+  ColorChangedState(this.color);
+}

@@ -24,7 +24,7 @@ class NotesCubit extends Cubit<NotesState> {
     required this.deleteNoteUseCase,
   }) : super(InitialNotesState());
 
-  Color colors = const Color(0xff6153CC);
+  Color currentColor = const Color(0xff6153CC);
 
   void getNotes() {
     Either<Failure, List<NoteEntity>> notes = getNotesUseCase.call();
@@ -35,13 +35,13 @@ class NotesCubit extends Cubit<NotesState> {
   }
 
   void addNote(NoteEntity addNote) {
-    addNote.color = colors.value;
+    addNote.color = currentColor.value;
     Either<Failure, Unit> note = addNoteUseCase.call(addNote);
     foldMethod(note);
   }
 
   void updateNote(NoteEntity updateNote) {
-    updateNote.color = colors.value;
+    updateNote.color = currentColor.value;
     Either<Failure, Unit> note = updateNoteUseCase.call(updateNote);
     foldMethod(note);
   }
@@ -49,6 +49,11 @@ class NotesCubit extends Cubit<NotesState> {
   void deleteNote(NoteEntity deleteNote) {
     Either<Failure, Unit> note = deleteNoteUseCase.call(deleteNote);
     foldMethod(note);
+  }
+
+  void changeColor(Color color) {
+    currentColor = color;
+    emit(ColorChangedState(color));
   }
 
   void foldMethod(Either<Failure, Unit> note) {
