@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:notesapp/core/app_colors.dart';
 
 import '../../../../core/enums/add_edit_note_enum.dart';
 import '../../domain/entities/note_entity.dart';
@@ -26,6 +27,8 @@ class AddOrUpdateNoteView extends StatelessWidget {
         listener: (context, state) {
           if (state is SuccessNotesState) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                behavior: SnackBarBehavior.floating,
+                duration: const Duration(seconds: 2),
                 content: Text(addEditNoteEnum == AddUpdateNoteEnum.addNoteView
                     ? "Note Added Successfuly"
                     : "Note Updated Successfuly")));

@@ -22,7 +22,7 @@ class NoteDetailsView extends StatelessWidget {
       ),
       body: Padding(
         padding:
-            const EdgeInsets.only(right: 14, left: 14, top: 14, bottom: 40),
+            const EdgeInsets.only(right: 14, left: 14, top: 14, bottom: 45),
         child: Center(
           child: Card(
             color: Color(noteEntity.color),

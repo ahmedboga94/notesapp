@@ -19,6 +19,9 @@ class AppThemes {
       centerTitle: true,
       elevation: 0.5,
     ),
+    snackBarTheme: const SnackBarThemeData(
+        backgroundColor: AppColors.darkColor,
+        contentTextStyle: TextStyle(color: AppColors.lightGreyColor)),
     cardTheme: CardTheme(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0))),
@@ -67,6 +70,9 @@ class AppThemes {
       centerTitle: true,
       elevation: 0.5,
     ),
+    snackBarTheme: const SnackBarThemeData(
+        backgroundColor: AppColors.darkColor,
+        contentTextStyle: TextStyle(color: AppColors.lightGreyColor)),
     cardTheme: CardTheme(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0))),

@@ -91,7 +91,7 @@ class _AddUpdateNoteFormState extends State<AddUpdateNoteForm> {
                     },
                     child: const Text("Update")),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 40),
         ],
       ),
     );
