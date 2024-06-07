@@ -54,16 +54,15 @@ class _ColorItemsListViewState extends State<ColorItemsListView> {
             itemBuilder: (context, index) {
               return Builder(builder: (context) {
                 final color = AppColors.colorsList[index];
-                return GestureDetector(
+                return ColorItem(
                     onTap: () {
                       context.read<NotesCubit>().changeColor(color);
-
                       setState(() {
                         currentIndex = index;
                       });
                     },
-                    child: ColorItem(
-                        color: color, isSelected: currentIndex == index));
+                    color: color,
+                    isSelected: currentIndex == index);
               });
             },
             separatorBuilder: (context, index) => const SizedBox(width: 8),
