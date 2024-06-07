@@ -32,7 +32,5 @@ class LocalNotesDataSourceImpl implements LocalNotesDataSource {
   @override
   void updateNote(NoteEntity updateNote) {
     notesBox.put(updateNote.key, updateNote);
-
-    // updateNote.save();
   }
 }

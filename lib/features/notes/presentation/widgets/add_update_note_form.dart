@@ -31,20 +31,20 @@ class _AddUpdateNoteFormState extends State<AddUpdateNoteForm> {
       child: Column(
         children: [
           TextFormField(
-            initialValue:
-                widget.addEditNoteEnum == AddUpdateNoteEnum.addNoteView
-                    ? ""
-                    : title = widget.noteEntity!.title,
-            decoration: const InputDecoration(hintText: "Title"),
-            validator: (value) => value!.isEmpty ? "Please Enter Title" : null,
-            onChanged: (value) => title = value,
-          ),
+              initialValue:
+                  widget.addEditNoteEnum == AddUpdateNoteEnum.addNoteView
+                      ? ""
+                      : widget.noteEntity!.title,
+              decoration: const InputDecoration(hintText: "Title"),
+              validator: (value) =>
+                  value!.isEmpty ? "Please Enter Title" : null,
+              onChanged: (value) => title = value),
           const SizedBox(height: 20),
           TextFormField(
             initialValue:
                 widget.addEditNoteEnum == AddUpdateNoteEnum.addNoteView
                     ? ""
-                    : content = widget.noteEntity!.subTitle,
+                    : widget.noteEntity!.subTitle,
             decoration: const InputDecoration(hintText: "Content"),
             validator: (value) =>
                 value!.isEmpty ? "Please Enter Content" : null,
