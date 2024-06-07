@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
@@ -20,9 +21,24 @@ class AddUpdateNoteForm extends StatefulWidget {
 
 class _AddUpdateNoteFormState extends State<AddUpdateNoteForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  TextEditingController titleCtrl = TextEditingController();
+  TextEditingController subTitleCtrl = TextEditingController();
 
-  String title = "";
-  String content = "";
+  @override
+  void initState() {
+    if (widget.addEditNoteEnum == AddUpdateNoteEnum.editNoteView) {
+      titleCtrl.text = widget.noteEntity!.title;
+      subTitleCtrl.text = widget.noteEntity!.subTitle;
+    }
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    titleCtrl.dispose();
+    subTitleCtrl.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,24 +47,16 @@ class _AddUpdateNoteFormState extends State<AddUpdateNoteForm> {
       child: Column(
         children: [
           TextFormField(
-              initialValue:
-                  widget.addEditNoteEnum == AddUpdateNoteEnum.addNoteView
-                      ? ""
-                      : widget.noteEntity!.title,
-              decoration: const InputDecoration(hintText: "Title"),
-              validator: (value) =>
-                  value!.isEmpty ? "Please Enter Title" : null,
-              onChanged: (value) => title = value),
+            controller: titleCtrl,
+            decoration: const InputDecoration(hintText: "Title"),
+            validator: (value) => value!.isEmpty ? "Please Enter Title" : null,
+          ),
           const SizedBox(height: 20),
           TextFormField(
-            initialValue:
-                widget.addEditNoteEnum == AddUpdateNoteEnum.addNoteView
-                    ? ""
-                    : widget.noteEntity!.subTitle,
+            controller: subTitleCtrl,
             decoration: const InputDecoration(hintText: "Content"),
             validator: (value) =>
                 value!.isEmpty ? "Please Enter Content" : null,
-            onChanged: (value) => content = value,
             maxLines: 7,
           ),
           const SizedBox(height: 20),
@@ -70,8 +78,8 @@ class _AddUpdateNoteFormState extends State<AddUpdateNoteForm> {
                             DateFormat("MMMM dd, yy").format(dateTime);
 
                         final NoteEntity addNote = NoteEntity(
-                            title: title,
-                            subTitle: content,
+                            title: titleCtrl.text,
+                            subTitle: subTitleCtrl.text,
                             dateTime: formattedDate,
                             color: Colors.yellow.value);
 
@@ -82,8 +90,8 @@ class _AddUpdateNoteFormState extends State<AddUpdateNoteForm> {
                 : ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        widget.noteEntity!.title = title;
-                        widget.noteEntity!.subTitle = content;
+                        widget.noteEntity!.title = titleCtrl.text;
+                        widget.noteEntity!.subTitle = subTitleCtrl.text;
 
                         BlocProvider.of<NotesCubit>(context)
                             .updateNote(widget.noteEntity!);
