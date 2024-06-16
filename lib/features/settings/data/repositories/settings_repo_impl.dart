@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
+import 'package:notesapp/core/enums/language_enum.dart';
 
 import '../../../../core/app_failures.dart';
 import '../../../../core/enums/theme_enum.dart';
@@ -21,9 +21,9 @@ class SettingsRepoImpl implements SettingsRepo {
   }
 
   @override
-  Either<Failure, Unit> setLocale(Locale locale) {
+  Either<Failure, Unit> setLocale(LangEnum deviceLang) {
     try {
-      localSettingsStorage.setLocale(locale);
+      localSettingsStorage.setLocale(deviceLang);
       return right(unit);
     } catch (e) {
       return left(Failure("Error in setting Language"));

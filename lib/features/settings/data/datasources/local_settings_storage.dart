@@ -1,5 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/material.dart';
+import 'package:notesapp/core/enums/language_enum.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -8,7 +7,7 @@ import '../../../../core/enums/theme_enum.dart';
 
 abstract class LocalSettingsStorage {
   ThemeEnum setTheme(ThemeEnum deviceTheme);
-  void setLocale(Locale locale);
+  void setLocale(LangEnum deviceLang);
 }
 
 class LocalSettingsStorageImp implements LocalSettingsStorage {
@@ -30,7 +29,13 @@ class LocalSettingsStorageImp implements LocalSettingsStorage {
   }
 
   @override
-  void setLocale(Locale locale) {
-    sharedPreferences.setString(AppStrings.setLang, locale.languageCode);
+  void setLocale(LangEnum deviceLang) {
+    if (deviceLang == LangEnum.englishLang) {
+      sharedPreferences.setString(AppStrings.setLang, AppStrings.setEnglish);
+    } else if (deviceLang == LangEnum.englishLang) {
+      sharedPreferences.setString(AppStrings.initTheme, AppStrings.setArabic);
+    } else {
+      sharedPreferences.setString(AppStrings.initTheme, AppStrings.systemTheme);
+    }
   }
 }

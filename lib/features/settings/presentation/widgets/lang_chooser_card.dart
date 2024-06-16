@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:notesapp/core/app_translate_keys.dart';
-
-import '../../../../core/app_strings.dart';
+import 'package:notesapp/core/enums/language_enum.dart';
 import '../../../../core/utils/custom_show_dialog.dart';
 import '../cubit/lang/lang_cubit.dart';
 
@@ -27,18 +26,21 @@ class LangChooserCard extends StatelessWidget {
               ListTile(
                 title: Text(context.arabicKey),
                 onTap: () {
-                  context
-                      .read<LangCubit>()
-                      .setLocale((const Locale(AppStrings.setArabic)));
+                  context.read<LangCubit>().setLocale(LangEnum.arabicLang);
                   Navigator.of(context).pop();
                 },
               ),
               ListTile(
                 title: Text(context.englishKey),
                 onTap: () {
-                  context
-                      .read<LangCubit>()
-                      .setLocale(const Locale(AppStrings.setEnglish));
+                  context.read<LangCubit>().setLocale(LangEnum.englishLang);
+                  Navigator.of(context).pop();
+                },
+              ),
+              ListTile(
+                title: Text(context.englishKey),
+                onTap: () {
+                  context.read<LangCubit>().setLocale(LangEnum.systemLang);
                   Navigator.of(context).pop();
                 },
               ),
