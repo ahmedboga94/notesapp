@@ -15,7 +15,7 @@ class AppThemes {
       actionsIconTheme: IconThemeData(color: AppColors.lightGreyColor),
       iconTheme: IconThemeData(color: AppColors.lightGreyColor),
       titleTextStyle: TextStyle(color: AppColors.lightGreyColor, fontSize: 34),
-      color: AppColors.primaryColor,
+      backgroundColor: AppColors.primaryColor,
       centerTitle: true,
       elevation: 0.5,
     ),

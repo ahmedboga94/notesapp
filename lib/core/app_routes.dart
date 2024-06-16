@@ -13,7 +13,6 @@ class AppRoutes {
   static const String noteDetailsView = "/notesDetailsView";
   static const String noteEditView = "/noteEditView";
   static const String settingsView = "/settingsView";
-  static const String searchView = "/searchView";
 
   static final GoRouter router = GoRouter(
     routes: [

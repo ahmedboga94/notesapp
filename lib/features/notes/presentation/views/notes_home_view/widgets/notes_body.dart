@@ -14,7 +14,7 @@ class NotesBody extends StatelessWidget {
       builder: (context, state) {
         return state is SuccessNotesState
             ? state.notes.isNotEmpty
-                ? Container(
+                ? Padding(
                     padding: const EdgeInsets.all(14),
                     child: ListView.builder(
                         itemCount: state.notes.length,

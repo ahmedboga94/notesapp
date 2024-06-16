@@ -1,6 +1,6 @@
 {
   "notesId" : "Notes",
- "addNewNotesId": "Add was New Notes from here",
+ "addNewNotesId": "Add New Notes from here",
   "addNoteId" : "Note was added succesfully",
   "updateNoteId" : "Note updated succesfully",
   "titleId" : "Note Title",
