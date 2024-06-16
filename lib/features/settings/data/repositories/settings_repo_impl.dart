@@ -11,10 +11,10 @@ class SettingsRepoImpl implements SettingsRepo {
   SettingsRepoImpl(this.localSettingsStorage);
 
   @override
-  Either<Failure, ThemeEnum> setTheme(ThemeEnum deviceTheme) {
+  Either<Failure, Unit> setTheme(ThemeEnum deviceTheme) {
     try {
-      var themeSelector = localSettingsStorage.setTheme(deviceTheme);
-      return right(themeSelector);
+      localSettingsStorage.setTheme(deviceTheme);
+      return right(unit);
     } catch (e) {
       return left(Failure("Error in setting theme"));
     }

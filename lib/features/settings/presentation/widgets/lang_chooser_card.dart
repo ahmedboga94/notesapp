@@ -37,13 +37,6 @@ class LangChooserCard extends StatelessWidget {
                   Navigator.of(context).pop();
                 },
               ),
-              ListTile(
-                title: Text(context.englishKey),
-                onTap: () {
-                  context.read<LangCubit>().setLocale(LangEnum.systemLang);
-                  Navigator.of(context).pop();
-                },
-              ),
             ],
           ),
         ),

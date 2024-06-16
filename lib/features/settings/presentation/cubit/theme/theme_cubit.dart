@@ -19,8 +19,8 @@ class ThemeCubit extends Cubit<ThemeState> {
     var themeSelect = setThemeUseCase.call(deviceTheme);
     themeSelect
         .fold((failSetTheme) => emit(FailureSelectedThemeState(failSetTheme)),
-            (setTheme) {
-      switch (setTheme) {
+            (successSetTheme) {
+      switch (deviceTheme) {
         case ThemeEnum.lightTheme:
           emit(LightThemeState());
         case ThemeEnum.darkTheme:

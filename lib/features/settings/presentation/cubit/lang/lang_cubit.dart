@@ -33,7 +33,6 @@ class LangCubit extends Cubit<LangState> {
 
   void getLang() {
     String? langKey = di<SharedPreferences>().getString(AppStrings.setLang);
-
     switch (langKey) {
       case AppStrings.setEnglish:
         emit(EnglishLangState());

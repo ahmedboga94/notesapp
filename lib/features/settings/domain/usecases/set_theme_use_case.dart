@@ -8,7 +8,7 @@ class SetThemeUseCase {
   final SettingsRepo settingsRepo;
   SetThemeUseCase(this.settingsRepo);
 
-  Either<Failure, ThemeEnum> call(ThemeEnum deviceTheme) {
+  Either<Failure, Unit> call(ThemeEnum deviceTheme) {
     return settingsRepo.setTheme(deviceTheme);
   }
 }
