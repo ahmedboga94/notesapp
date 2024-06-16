@@ -14,7 +14,9 @@ import '../features/notes/presentation/cubit/notes/notes_cubit.dart';
 import '../features/settings/data/datasources/local_settings_storage.dart';
 import '../features/settings/data/repositories/settings_repo_impl.dart';
 import '../features/settings/domain/repositories/settings_repo.dart';
+import '../features/settings/domain/usecases/set_Locale_use_case.dart';
 import '../features/settings/domain/usecases/set_theme_use_case.dart';
+import '../features/settings/presentation/cubit/lang/lang_cubit.dart';
 import '../features/settings/presentation/cubit/theme/theme_cubit.dart';
 import 'app_strings.dart';
 import 'utils/custom_status_nav_bar_func.dart';
@@ -43,9 +45,11 @@ Future<void> diCoreAndExternal() async {
 Future<void> diSettingsFeature() async {
   //cubit
   di.registerFactory(() => ThemeCubit(di()));
+  di.registerFactory(() => LangCubit(di()));
 
   //use_case
   di.registerLazySingleton(() => SetThemeUseCase(di()));
+  di.registerLazySingleton(() => SetLocaleUseCase(di()));
 
   //repo
   di.registerLazySingleton<SettingsRepo>(() => SettingsRepoImpl(di()));

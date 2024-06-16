@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notesapp/core/app_translate_keys.dart';
 
 import '../../../../core/enums/theme_enum.dart';
 import '../cubit/theme/theme_cubit.dart';
@@ -15,21 +16,21 @@ class ThemeSelectorRadio extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             RadioListTile(
-                title: const Text("Light"),
+                title: Text(context.lightThemeKey),
                 value: ThemeEnum.lightTheme,
                 groupValue: state.selectedTheme,
                 onChanged: (ThemeEnum? themeSelected) {
                   context.read<ThemeCubit>().setTheme(themeSelected!);
                 }),
             RadioListTile(
-                title: const Text("Dark"),
+                title: Text(context.darkThemeKey),
                 value: ThemeEnum.darkTheme,
                 groupValue: state.selectedTheme,
                 onChanged: (ThemeEnum? themeSelected) {
                   context.read<ThemeCubit>().setTheme(themeSelected!);
                 }),
             RadioListTile(
-                title: const Text("System Default"),
+                title: Text(context.systemThemeKey),
                 value: ThemeEnum.systemTheme,
                 groupValue: state.selectedTheme,
                 onChanged: (ThemeEnum? themeSelected) {

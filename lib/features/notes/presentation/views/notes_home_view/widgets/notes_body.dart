@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notesapp/core/app_translate_keys.dart';
 
 import '../../../cubit/notes/notes_cubit.dart';
 import 'custom_note_card.dart';
@@ -24,10 +25,8 @@ class NotesBody extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          "Add new Note from here",
-                          style: Theme.of(context).textTheme.headlineMedium,
-                        ),
+                        Text(context.addNewNotesKey,
+                            style: Theme.of(context).textTheme.headlineMedium),
                         const SizedBox(height: 20),
                         const Icon(
                           Icons.arrow_downward,

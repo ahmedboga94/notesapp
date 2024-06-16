@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:notesapp/core/app_strings.dart';
+import 'package:notesapp/core/utils/two_bloc_builder.dart';
+import 'package:notesapp/features/settings/presentation/cubit/lang/lang_cubit.dart';
 
 import 'core/app_hive_local.dart';
 import 'core/app_routes.dart';
@@ -24,21 +28,30 @@ class NotesApp extends StatelessWidget {
       providers: [
         BlocProvider<ThemeCubit>(
             create: (context) => di<ThemeCubit>()..getTheme()),
+        BlocProvider<LangCubit>(
+            create: (context) => di<LangCubit>()..getLang()),
         BlocProvider<NotesCubit>(
             create: (context) => di<NotesCubit>()..getNotes()),
       ],
-      child: BlocBuilder<ThemeCubit, ThemeState>(
-        builder: (context, state) {
+      child: TwoBlocBuilder<LangCubit, LangState, ThemeCubit, ThemeState>(
+        builder: (context, lang, theme) {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
             title: "Notes App",
             theme: AppThemes.lightTheme,
             darkTheme: AppThemes.darkTheme,
-            themeMode: state is LightThemeState
+            themeMode: theme is LightThemeState
                 ? ThemeMode.light
-                : state is DarkThemeState
+                : theme is DarkThemeState
                     ? ThemeMode.dark
                     : ThemeMode.system,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            locale: lang is EnglishLangState
+                ? const Locale(AppStrings.setEnglish)
+                : lang is ArabicLangState
+                    ? const Locale(AppStrings.setArabic)
+                    : null,
             routerConfig: AppRoutes.router,
           );
         },

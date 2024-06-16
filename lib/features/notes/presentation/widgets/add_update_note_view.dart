@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:notesapp/core/app_translate_keys.dart';
 
 import '../../../../core/enums/add_edit_note_enum.dart';
 import '../../domain/entities/note_entity.dart';
@@ -29,8 +30,8 @@ class AddOrUpdateNoteView extends StatelessWidget {
                 behavior: SnackBarBehavior.floating,
                 duration: const Duration(seconds: 2),
                 content: Text(addEditNoteEnum == AddUpdateNoteEnum.addNoteView
-                    ? "Note Added Successfuly"
-                    : "Note Updated Successfuly")));
+                    ? context.addNoteKey
+                    : context.updateNoteKey)));
             GoRouter.of(context).pop();
           }
           if (state is FailureNotesState) {

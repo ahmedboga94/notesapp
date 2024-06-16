@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:notesapp/core/app_translate_keys.dart';
 
 import '../../../../core/enums/add_edit_note_enum.dart';
 import '../../domain/entities/note_entity.dart';
@@ -48,15 +48,16 @@ class _AddUpdateNoteFormState extends State<AddUpdateNoteForm> {
         children: [
           TextFormField(
             controller: titleCtrl,
-            decoration: const InputDecoration(hintText: "Title"),
-            validator: (value) => value!.isEmpty ? "Please Enter Title" : null,
+            decoration: InputDecoration(hintText: context.titleKey),
+            validator: (value) =>
+                value!.isEmpty ? context.enterTitleNoteKey : null,
           ),
           const SizedBox(height: 20),
           TextFormField(
             controller: subTitleCtrl,
-            decoration: const InputDecoration(hintText: "Content"),
+            decoration: InputDecoration(hintText: context.contantKey),
             validator: (value) =>
-                value!.isEmpty ? "Please Enter Content" : null,
+                value!.isEmpty ? context.enterContentNoteKey : null,
             maxLines: 7,
           ),
           const SizedBox(height: 20),
@@ -86,7 +87,7 @@ class _AddUpdateNoteFormState extends State<AddUpdateNoteForm> {
                         BlocProvider.of<NotesCubit>(context).addNote(addNote);
                       }
                     },
-                    child: const Text("Add"))
+                    child: Text(context.addKey))
                 : ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
@@ -97,7 +98,7 @@ class _AddUpdateNoteFormState extends State<AddUpdateNoteForm> {
                             .updateNote(widget.noteEntity!);
                       }
                     },
-                    child: const Text("Update")),
+                    child: Text(context.updateKey)),
           ),
           const SizedBox(height: 40),
         ],

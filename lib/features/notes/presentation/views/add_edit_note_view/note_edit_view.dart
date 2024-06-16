@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notesapp/core/app_translate_keys.dart';
 
 import '../../../../../core/enums/add_edit_note_enum.dart';
 import '../../../domain/entities/note_entity.dart';
@@ -11,7 +12,7 @@ class NoteEditView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Edit Note")),
+      appBar: AppBar(title: Text(context.editNoteViewKey)),
       body: AddOrUpdateNoteView(
           noteEntity: noteEntity!,
           addEditNoteEnum: AddUpdateNoteEnum.editNoteView),

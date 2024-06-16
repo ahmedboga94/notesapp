@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:notesapp/core/app_translate_keys.dart';
 import '../widgets/settings_body.dart';
 
 class SettingsView extends StatelessWidget {
@@ -8,7 +8,7 @@ class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Settings")),
+      appBar: AppBar(title: Text(context.settingsKey)),
       body: const SettingsBody(),
     );
   }

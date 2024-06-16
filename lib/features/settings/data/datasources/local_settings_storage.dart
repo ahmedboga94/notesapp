@@ -8,6 +8,7 @@ import '../../../../core/enums/theme_enum.dart';
 
 abstract class LocalSettingsStorage {
   ThemeEnum setTheme(ThemeEnum deviceTheme);
+  void setLocale(Locale locale);
 }
 
 class LocalSettingsStorageImp implements LocalSettingsStorage {
@@ -18,19 +19,18 @@ class LocalSettingsStorageImp implements LocalSettingsStorage {
   ThemeEnum setTheme(ThemeEnum deviceTheme) {
     if (deviceTheme == ThemeEnum.lightTheme) {
       sharedPreferences.setString(AppStrings.initTheme, AppStrings.lightTheme);
-      debugPrint(sharedPreferences.getString(AppStrings.initTheme));
-
       return ThemeEnum.lightTheme;
     } else if (deviceTheme == ThemeEnum.darkTheme) {
       sharedPreferences.setString(AppStrings.initTheme, AppStrings.darkTheme);
-      debugPrint(sharedPreferences.getString(AppStrings.initTheme));
-
       return ThemeEnum.darkTheme;
     } else {
       sharedPreferences.setString(AppStrings.initTheme, AppStrings.systemTheme);
-      debugPrint(sharedPreferences.getString(AppStrings.initTheme));
-
       return ThemeEnum.systemTheme;
     }
+  }
+
+  @override
+  void setLocale(Locale locale) {
+    sharedPreferences.setString(AppStrings.setLang, locale.languageCode);
   }
 }

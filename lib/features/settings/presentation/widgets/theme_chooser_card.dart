@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:notesapp/core/app_translate_keys.dart';
 
 import '../../../../core/utils/custom_show_dialog.dart';
 import '../cubit/theme/theme_cubit.dart';
@@ -22,16 +23,17 @@ class ThemeChooserCard extends StatelessWidget {
                         ? Ionicons.moon
                         : Ionicons.phone_portrait,
                 size: 30),
-            title: Text("Theme", style: Theme.of(context).textTheme.labelLarge),
+            title: Text(context.themeKey,
+                style: Theme.of(context).textTheme.labelLarge),
             subtitle: Text(state is LightThemeState
-                ? "Light"
+                ? context.lightThemeKey
                 : state is DarkThemeState
-                    ? "Dark"
-                    : "Follow System"),
+                    ? context.darkThemeKey
+                    : context.systemThemeKey),
             onTap: () {
               customShowDialog(
                   context: context,
-                  title: "Select Theme",
+                  title: context.selectThemeKey,
                   content: const ThemeSelectorRadio());
             },
           ),
