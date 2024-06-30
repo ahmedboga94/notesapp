@@ -15,6 +15,8 @@ extension AppTranslateKeys on BuildContext {
   String get updateKey => translation(this).updateId;
   String get noteViewkey => translation(this).noteViewId;
   String get editNoteViewKey => translation(this).editNoteViewId;
+  String get itemSelectedKey => translation(this).itemSelectedId;
+  String get noItemSelectedKey => translation(this).noItemSelectedId;
 
   //Settings
   String get settingsKey => translation(this).settingsId;
@@ -24,6 +26,8 @@ extension AppTranslateKeys on BuildContext {
   String get systemThemeKey => translation(this).systemThemeId;
   String get selectThemeKey => translation(this).selectThemeId;
   String get okKey => translation(this).okId;
+  String get cancelKey => translation(this).cancelId;
+  String get deleteDescrpKey => translation(this).deleteDescrpId;
 
   String get languageKey => translation(this).langId;
   String get langSelectedKey => translation(this).langSelectedId;

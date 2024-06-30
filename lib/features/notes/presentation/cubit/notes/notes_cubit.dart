@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,6 +28,11 @@ class NotesCubit extends Cubit<NotesState> {
   }) : super(InitialNotesState());
 
   Color selectedColor = AppColors.colorsList[0];
+  // List<NoteEntity> noteSelection = [];
+  final HashSet<NoteEntity> _selectedItems = HashSet();
+  bool isMultiSelectionEnabled = false;
+
+  HashSet<NoteEntity> get selectedItems => _selectedItems;
 
   void getNotes() {
     Either<Failure, List<NoteEntity>> notes = getNotesUseCase.call();
@@ -61,5 +68,44 @@ class NotesCubit extends Cubit<NotesState> {
       (fail) => emit(FailureNotesState(fail.failureMessage)),
       (success) => getNotes(),
     );
+  }
+
+//////////// multi selection /////////////
+
+  void toggleMultiSelection(bool enabled) {
+    isMultiSelectionEnabled = enabled;
+    if (state is SuccessNotesState) {
+      emit(SuccessNotesState((state as SuccessNotesState).notes));
+    }
+  }
+
+  void toggleSelection(NoteEntity notes) {
+    if (_selectedItems.contains(notes)) {
+      _selectedItems.remove(notes);
+    } else {
+      _selectedItems.add(notes);
+    }
+    if (state is SuccessNotesState) {
+      emit(SuccessNotesState((state as SuccessNotesState).notes));
+    }
+  }
+
+  void clearSelection() {
+    _selectedItems.clear();
+    isMultiSelectionEnabled = false;
+    if (state is SuccessNotesState) {
+      emit(SuccessNotesState((state as SuccessNotesState).notes));
+    }
+  }
+
+  void selectAll() {
+    if (state is SuccessNotesState) {
+      if (_selectedItems.length == (state as SuccessNotesState).notes.length) {
+        _selectedItems.clear();
+      } else {
+        _selectedItems.addAll((state as SuccessNotesState).notes);
+      }
+      emit(SuccessNotesState((state as SuccessNotesState).notes));
+    }
   }
 }

@@ -19,7 +19,10 @@ class NotesBody extends StatelessWidget {
                     child: ListView.builder(
                         itemCount: state.notes.length,
                         itemBuilder: (context, index) {
-                          return CustomNoteCard(noteEntity: state.notes[index]);
+                          return CustomNoteCard(
+                            noteEntity: state.notes[index],
+                            isMultiSelection: true,
+                          );
                         }))
                 : Center(
                     child: Column(
@@ -28,11 +31,8 @@ class NotesBody extends StatelessWidget {
                         Text(context.addNewNotesKey,
                             style: Theme.of(context).textTheme.headlineMedium),
                         const SizedBox(height: 20),
-                        const Icon(
-                          Icons.arrow_downward,
-                          size: 40,
-                          color: Colors.grey,
-                        ),
+                        const Icon(Icons.arrow_downward,
+                            size: 40, color: Colors.grey),
                       ],
                     ),
                   )

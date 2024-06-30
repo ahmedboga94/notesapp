@@ -11,6 +11,8 @@
   "updateId" :"Update",
   "noteViewId":"Note View",
   "editNoteViewId":"Edit Note",
+  "itemSelectedId":"Items Selected",
+  "noItemSelectedId":"No Items Selected",
   "settingsId": "Settings",
   "themeId":"Theme",
   "lightThemeId":"Light Theme",
@@ -22,5 +24,7 @@
   "arabicLangId":"Arabic",
   "englishLang":"English",
   "langSelectedId":"English",
-  "okId":"Ok"
+  "okId":"Ok",
+  "cancelId":"Cancel",
+  "deleteDescrpId":"Are you sure from deleting?"
 }

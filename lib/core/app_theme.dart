@@ -14,7 +14,7 @@ class AppThemes {
     appBarTheme: const AppBarTheme(
       actionsIconTheme: IconThemeData(color: AppColors.lightGreyColor),
       iconTheme: IconThemeData(color: AppColors.lightGreyColor),
-      titleTextStyle: TextStyle(color: AppColors.lightGreyColor, fontSize: 34),
+      titleTextStyle: TextStyle(color: AppColors.lightGreyColor, fontSize: 28),
       backgroundColor: AppColors.primaryColor,
       centerTitle: true,
       elevation: 0.5,
@@ -65,7 +65,7 @@ class AppThemes {
     appBarTheme: const AppBarTheme(
       actionsIconTheme: IconThemeData(color: AppColors.lightGreyColor),
       iconTheme: IconThemeData(color: AppColors.lightGreyColor),
-      titleTextStyle: TextStyle(color: AppColors.lightGreyColor, fontSize: 34),
+      titleTextStyle: TextStyle(color: AppColors.lightGreyColor, fontSize: 28),
       color: AppColors.darkColor,
       centerTitle: true,
       elevation: 0.5,

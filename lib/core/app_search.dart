@@ -23,10 +23,6 @@ class AppSearchDelegate extends SearchDelegate<String> {
         ));
   }
 
-  // @override
-  // TextStyle get searchFieldStyle =>
-  //     const TextStyle(color: AppColors.lightGreyColor);
-
   @override
   List<Widget> buildActions(BuildContext context) {
     return [

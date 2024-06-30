@@ -11,6 +11,8 @@
   "updateId" :"تحديث",
   "noteViewId":"عرض الملاحظة",
   "editNoteViewId":"تعديل الملاحظة",
+  "itemSelectedId":"من العناصر المحددة",
+  "noItemSelectedId":"لا عنصر محدد",
   "settingsId": "الإعدادات",
   "themeId":"المظهر",
   "lightThemeId":"المظهر الفاتح",
@@ -22,5 +24,7 @@
   "arabicLangId":"العربية",
   "englishLang":"الإنجليزية",
   "langSelectedId":"العربية",
-  "okId":"موافق"
+  "okId":"موافق",
+  "cancelId":"إلغاء",
+  "deleteDescrpId":"هل انت متأكد من الحذف؟"
 }
