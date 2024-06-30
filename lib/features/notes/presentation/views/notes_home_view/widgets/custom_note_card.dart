@@ -18,10 +18,10 @@ class CustomNoteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NotesCubit, NotesState>(
+    final noteCubit = context.read<NotesCubit>();
+    final selectedItems = noteCubit.selectedItems;
+    return BlocConsumer<NotesCubit, NotesState>(
       builder: (context, state) {
-        final noteCubit = context.read<NotesCubit>();
-        final selectedItems = noteCubit.selectedItems;
         return state is SuccessNotesState
             ? GestureDetector(
                 onTap: () {
@@ -64,7 +64,7 @@ class CustomNoteCard extends StatelessWidget {
                                             ? Ionicons.checkmark_circle
                                             : Ionicons.ellipse_outline,
                                         size: 30,
-                                        color: AppColors.lessdarkColor,
+                                        color: AppColors.darkColor,
                                       ),
                                       onPressed: null,
                                     )
@@ -77,6 +77,7 @@ class CustomNoteCard extends StatelessWidget {
                                             context
                                                 .read<NotesCubit>()
                                                 .deleteNote(noteEntity);
+                                            GoRouter.of(context).pop();
                                           }),
                                       icon: const Icon(Ionicons.close_circle,
                                           size: 28,
@@ -109,6 +110,13 @@ class CustomNoteCard extends StatelessWidget {
                       )),
                 ))
             : const SizedBox();
+      },
+      listener: (context, state) {
+        if (state is SuccessNotesState) {
+          if (noteCubit.isMultiSelectionEnabled && selectedItems.isEmpty) {
+            // noteCubit.toggleMultiSelection(false);
+          }
+        }
       },
     );
   }

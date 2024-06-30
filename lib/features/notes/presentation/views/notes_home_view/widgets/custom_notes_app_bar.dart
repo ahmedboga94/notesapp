@@ -55,6 +55,7 @@ class CustomNotesAppBar extends StatelessWidget {
                                   notesCubit.deleteNote(notes);
                                 }
                                 notesCubit.clearSelection();
+                                GoRouter.of(context).pop();
                               }))),
                   Visibility(
                       visible: isMultiSelectionEnabled,
