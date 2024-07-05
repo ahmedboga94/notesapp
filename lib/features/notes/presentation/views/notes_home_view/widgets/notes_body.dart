@@ -12,15 +12,28 @@ class NotesBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NotesCubit, NotesState>(
       builder: (context, state) {
+        final noteCubit = context.read<NotesCubit>();
         return state is SuccessNotesState
             ? state.notes.isNotEmpty
-                ? Padding(
-                    padding: const EdgeInsets.all(14),
-                    child: ListView.builder(
-                        itemCount: state.notes.length,
-                        itemBuilder: (context, index) {
-                          return CustomNoteCard(noteEntity: state.notes[index]);
-                        }))
+                ? PopScope(
+                    canPop: !noteCubit.isMultiSelectionEnabled,
+                    onPopInvoked: (didPop) {
+                      if (noteCubit.isMultiSelectionEnabled) {
+                        noteCubit.toggleMultiSelection(false);
+                        noteCubit.clearSelection();
+                      }
+                    },
+                    child: Padding(
+                        padding: const EdgeInsets.all(14),
+                        child: ListView.builder(
+                            itemCount: state.notes.length,
+                            itemBuilder: (context, index) {
+                              return CustomNoteCard(
+                                noteEntity: state.notes[index],
+                                isMultiSelection: true,
+                              );
+                            })),
+                  )
                 : Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -28,11 +41,8 @@ class NotesBody extends StatelessWidget {
                         Text(context.addNewNotesKey,
                             style: Theme.of(context).textTheme.headlineMedium),
                         const SizedBox(height: 20),
-                        const Icon(
-                          Icons.arrow_downward,
-                          size: 40,
-                          color: Colors.grey,
-                        ),
+                        const Icon(Icons.arrow_downward,
+                            size: 40, color: Colors.grey),
                       ],
                     ),
                   )

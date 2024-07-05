@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:notesapp/core/app_colors.dart';
 import 'package:notesapp/features/notes/domain/entities/note_entity.dart';
 
@@ -27,7 +28,7 @@ class AppSearchDelegate extends SearchDelegate<String> {
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: const Icon(Icons.clear),
+        icon: const Icon(Ionicons.close),
         onPressed: () {
           if (query.isEmpty) {
             close(context, '');
@@ -42,7 +43,7 @@ class AppSearchDelegate extends SearchDelegate<String> {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: const Icon(Icons.arrow_back),
+      icon: const Icon(Ionicons.arrow_back),
       onPressed: () {
         close(context, '');
       },
