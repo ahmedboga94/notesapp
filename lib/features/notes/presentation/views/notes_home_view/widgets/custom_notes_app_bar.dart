@@ -8,7 +8,7 @@ import 'package:notesapp/core/app_translate_keys.dart';
 
 import '../../../../../../core/app_assets.dart';
 import '../../../../../../core/app_routes.dart';
-import '../../../../../../core/app_search.dart';
+import '../../../../../../core/services/app_search.dart';
 import '../../../../../../core/utils/confirm_to_delete.dart';
 import '../../../cubit/notes/notes_cubit.dart';
 

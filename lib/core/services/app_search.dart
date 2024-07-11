@@ -3,7 +3,7 @@ import 'package:ionicons/ionicons.dart';
 import 'package:notesapp/core/app_colors.dart';
 import 'package:notesapp/features/notes/domain/entities/note_entity.dart';
 
-import '../features/notes/presentation/views/notes_home_view/widgets/custom_note_card.dart';
+import '../../features/notes/presentation/views/notes_home_view/widgets/custom_note_card.dart';
 
 class AppSearchDelegate extends SearchDelegate<String> {
   final List<NoteEntity> data;
