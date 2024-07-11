@@ -17,7 +17,7 @@ class ColorItem extends StatelessWidget {
       onTap: onTap,
       child: CircleAvatar(
           radius: 30,
-          backgroundColor: isSelected ? AppColors.primaryColor : color,
+          backgroundColor: isSelected ? AppColors.lessdarkColor : color,
           child: CircleAvatar(
             radius: 25,
             backgroundColor: color,
