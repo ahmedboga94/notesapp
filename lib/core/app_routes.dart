@@ -3,13 +3,13 @@ import 'package:go_router/go_router.dart';
 import '../features/notes/domain/entities/note_entity.dart';
 import '../features/notes/presentation/views/add_edit_note_view/note_edit_view.dart';
 import '../features/notes/presentation/views/note_details_view/note_details_view.dart';
-import '../features/notes/presentation/views/notes_home_view/notes_view.dart';
-import '../features/notes/presentation/views/splash_view/splash_view.dart';
+import '../features/splash/presentation/views/splash_view/splash_view.dart';
 import '../features/settings/presentation/views/settings_view.dart';
+import '../features/bottom_nav/presentation/views/main_view_bottom_nav_bar.dart';
 
 class AppRoutes {
   static const String splashView = "/";
-  static const String notesView = "/notesView";
+  static const String mainView = "/mainView";
   static const String noteDetailsView = "/notesDetailsView";
   static const String noteEditView = "/noteEditView";
   static const String settingsView = "/settingsView";
@@ -21,8 +21,8 @@ class AppRoutes {
         builder: (context, state) => const SplashView(),
       ),
       GoRoute(
-        path: notesView,
-        builder: (context, state) => const NotesView(),
+        path: mainView,
+        builder: (context, state) => const MainView(),
       ),
       GoRoute(
         path: noteDetailsView,

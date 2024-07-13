@@ -9,4 +9,5 @@ class AppStrings {
   static const String setArabic = "ar";
 
   static const String notesBox = "notesBox";
+  static const String remindersBox = "remindersBox";
 }

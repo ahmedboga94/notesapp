@@ -3,43 +3,40 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:notesapp/core/utils/confirm_to_delete.dart';
+import 'package:notesapp/features/reminders/domain/entities/reminder_entity.dart';
+import 'package:notesapp/features/reminders/presentation/cubit/reminders/reminders_cubit.dart';
 
 import '../../../../../../core/app_colors.dart';
-import '../../../../../../core/app_routes.dart';
-import '../../../../domain/entities/note_entity.dart';
-import '../../../cubit/notes/notes_cubit.dart';
+import 'update_reminder_dialog_btn.dart';
 
-class CustomNoteCard extends StatelessWidget {
-  final NoteEntity noteEntity;
+class CustomReminderCard extends StatelessWidget {
+  final ReminderEntity reminderEntity;
   final bool isMultiSelection;
 
-  const CustomNoteCard(
-      {super.key, required this.noteEntity, this.isMultiSelection = false});
+  const CustomReminderCard(
+      {super.key, required this.reminderEntity, this.isMultiSelection = false});
 
   @override
   Widget build(BuildContext context) {
-    final noteCubit = context.read<NotesCubit>();
+    final noteCubit = context.read<RemindersCubit>();
     final selectedItems = noteCubit.selectedItems;
-    return BlocBuilder<NotesCubit, NotesState>(
+    return BlocBuilder<RemindersCubit, RemindersState>(
       builder: (context, state) {
-        return state is SuccessNotesState
+        return state is SuccessRemindersState
             ? GestureDetector(
                 onTap: () {
                   if (noteCubit.isMultiSelectionEnabled) {
-                    noteCubit.toggleSelection(noteEntity);
-                  } else {
-                    GoRouter.of(context)
-                        .push(AppRoutes.noteDetailsView, extra: noteEntity);
+                    noteCubit.toggleSelection(reminderEntity);
                   }
                 },
                 onLongPress: () {
                   if (isMultiSelection) {
                     noteCubit.toggleMultiSelection(true);
-                    noteCubit.toggleSelection(noteEntity);
+                    noteCubit.toggleSelection(reminderEntity);
                   }
                 },
                 child: Card(
-                  color: Color(noteEntity.color),
+                  color: Color(reminderEntity.color),
                   child: Padding(
                       padding: const EdgeInsets.all(20),
                       child: Column(
@@ -49,7 +46,7 @@ class CustomNoteCard extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Expanded(
-                                child: Text(noteEntity.title,
+                                child: Text(reminderEntity.title,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: Theme.of(context)
@@ -57,10 +54,15 @@ class CustomNoteCard extends StatelessWidget {
                                         .headlineMedium!
                                         .copyWith(color: AppColors.darkColor)),
                               ),
+                              Visibility(
+                                visible: !noteCubit.isMultiSelectionEnabled,
+                                child: UpdateReminderDialogBtn(
+                                    reminderEntity: reminderEntity),
+                              ),
                               noteCubit.isMultiSelectionEnabled
                                   ? IconButton(
                                       icon: Icon(
-                                        selectedItems.contains(noteEntity)
+                                        selectedItems.contains(reminderEntity)
                                             ? Ionicons.checkmark_circle
                                             : Ionicons.ellipse_outline,
                                         size: 30,
@@ -75,8 +77,8 @@ class CustomNoteCard extends StatelessWidget {
                                           context: context,
                                           onPressed: () {
                                             context
-                                                .read<NotesCubit>()
-                                                .deleteNote(noteEntity);
+                                                .read<RemindersCubit>()
+                                                .deleteReminder(reminderEntity);
                                             GoRouter.of(context).pop();
                                           }),
                                       icon: const Icon(Ionicons.close_circle,
@@ -88,7 +90,7 @@ class CustomNoteCard extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(vertical: 8),
                               child: Opacity(
                                 opacity: 0.5,
-                                child: Text(noteEntity.subTitle,
+                                child: Text(reminderEntity.subTitle,
                                     maxLines: 2,
                                     style: Theme.of(context)
                                         .textTheme
@@ -99,7 +101,7 @@ class CustomNoteCard extends StatelessWidget {
                             alignment: AlignmentDirectional.bottomEnd,
                             child: Opacity(
                               opacity: 0.7,
-                              child: Text(noteEntity.dateTime,
+                              child: Text(reminderEntity.dateTime,
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleSmall!

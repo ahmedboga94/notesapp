@@ -7,17 +7,18 @@ import '../../../../core/app_colors.dart';
 import '../cubit/notes/notes_cubit.dart';
 import 'color_item.dart';
 
-class ColorItemsListView extends StatefulWidget {
+class NotesColorItemsListView extends StatefulWidget {
   final AddUpdateNoteEnum addEditNoteEnum;
   final NoteEntity? noteEntity;
-  const ColorItemsListView(
+  const NotesColorItemsListView(
       {super.key, required this.addEditNoteEnum, this.noteEntity});
 
   @override
-  State<ColorItemsListView> createState() => _ColorItemsListViewState();
+  State<NotesColorItemsListView> createState() =>
+      _NotesColorItemsListViewState();
 }
 
-class _ColorItemsListViewState extends State<ColorItemsListView> {
+class _NotesColorItemsListViewState extends State<NotesColorItemsListView> {
   int currentIndex = 0;
 
   seletedColorMethod() {

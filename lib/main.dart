@@ -3,9 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:notesapp/core/app_strings.dart';
 import 'package:notesapp/core/utils/two_bloc_builder.dart';
+import 'package:notesapp/features/reminders/presentation/cubit/reminders/reminders_cubit.dart';
 import 'package:notesapp/features/settings/presentation/cubit/lang/lang_cubit.dart';
 
-import 'core/app_hive_local.dart';
+import 'core/services/app_hive_local.dart';
 import 'core/app_routes.dart';
 import 'core/app_theme.dart';
 import 'core/di.dart';
@@ -32,6 +33,8 @@ class NotesApp extends StatelessWidget {
             create: (context) => di<LangCubit>()..getLang()),
         BlocProvider<NotesCubit>(
             create: (context) => di<NotesCubit>()..getNotes()),
+        BlocProvider<RemindersCubit>(
+            create: (context) => di<RemindersCubit>()..getReminders()),
       ],
       child: TwoBlocBuilder<LangCubit, LangState, ThemeCubit, ThemeState>(
         builder: (context, lang, theme) {

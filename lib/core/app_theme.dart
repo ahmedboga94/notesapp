@@ -54,6 +54,9 @@ class AppThemes {
         ),
       ),
     ),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      selectedItemColor: AppColors.primaryColor,
+    ),
   );
 
   // Dark theme
@@ -104,6 +107,10 @@ class AppThemes {
           borderRadius: BorderRadius.circular(14.0),
         ),
       ),
+    ),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: AppColors.darkColor,
+      selectedItemColor: AppColors.primaryColor,
     ),
   );
 }

@@ -28,7 +28,6 @@ class NotesCubit extends Cubit<NotesState> {
   }) : super(InitialNotesState());
 
   Color selectedColor = AppColors.colorsList[0];
-  // List<NoteEntity> noteSelection = [];
   final HashSet<NoteEntity> _selectedItems = HashSet();
   bool isMultiSelectionEnabled = false;
 

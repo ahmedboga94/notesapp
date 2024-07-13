@@ -6,7 +6,7 @@ import 'package:notesapp/core/app_translate_keys.dart';
 import '../../../../core/enums/add_edit_note_enum.dart';
 import '../../domain/entities/note_entity.dart';
 import '../cubit/notes/notes_cubit.dart';
-import 'color_items_list_view.dart';
+import 'notes_color_items_list_view.dart';
 
 class AddUpdateNoteForm extends StatefulWidget {
   final AddUpdateNoteEnum addEditNoteEnum;
@@ -61,7 +61,7 @@ class _AddUpdateNoteFormState extends State<AddUpdateNoteForm> {
             maxLines: 7,
           ),
           const SizedBox(height: 20),
-          ColorItemsListView(
+          NotesColorItemsListView(
               addEditNoteEnum: widget.addEditNoteEnum,
               noteEntity: widget.noteEntity),
           const SizedBox(height: 30),

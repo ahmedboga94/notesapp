@@ -18,6 +18,22 @@ extension AppTranslateKeys on BuildContext {
   String get itemSelectedKey => translation(this).itemSelectedId;
   String get noItemSelectedKey => translation(this).noItemSelectedId;
 
+  //Reminders
+  String get remindersKey => translation(this).remindersId;
+  // String get addNewNotesKey => translation(this).addNewNotesId;
+  // String get addNoteKey => translation(this).addNoteId;
+  // String get updateNoteKey => translation(this).updateNoteId;
+  // String get titleKey => translation(this).titleId;
+  // String get enterTitleNoteKey => translation(this).enterContentNoteId;
+  // String get contantKey => translation(this).contentId;
+  // String get enterContentNoteKey => translation(this).enterContentNoteId;
+  // String get addKey => translation(this).addId;
+  // String get updateKey => translation(this).updateId;
+  // String get noteViewkey => translation(this).noteViewId;
+  // String get editNoteViewKey => translation(this).editNoteViewId;
+  // String get itemSelectedKey => translation(this).itemSelectedId;
+  // String get noItemSelectedKey => translation(this).noItemSelectedId;
+
   //Settings
   String get settingsKey => translation(this).settingsId;
   String get themeKey => translation(this).themeId;

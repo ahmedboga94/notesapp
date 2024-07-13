@@ -15,7 +15,7 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   void navigateToHome() {
     Future.delayed(const Duration(seconds: 2), () {
-      context.go(AppRoutes.notesView);
+      context.go(AppRoutes.mainView);
     });
   }
 

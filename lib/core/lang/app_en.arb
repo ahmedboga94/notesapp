@@ -13,6 +13,7 @@
   "editNoteViewId":"Edit Note",
   "itemSelectedId":"Items Selected",
   "noItemSelectedId":"No Items Selected",
+  "remindersId":"Reminders",
   "settingsId": "Settings",
   "themeId":"Theme",
   "lightThemeId":"Light Theme",

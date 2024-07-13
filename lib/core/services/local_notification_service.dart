@@ -1,4 +1,5 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:notesapp/features/reminders/domain/entities/reminder_entity.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
@@ -28,7 +29,7 @@ class NotificationService {
   }
 
   // show a simple notification
-  static Future showSimpleNotification(Reminder reminder) async {
+  static Future showSimpleNotification(ReminderEntity reminder) async {
     await flutterLocalNotificationsPlugin.show(
       0,
       reminder.title,
@@ -38,26 +39,14 @@ class NotificationService {
     );
   }
 
-  // to show periodic notification at regular interval
-  static Future showPeriodicNotifications(Reminder reminder) async {
-    await flutterLocalNotificationsPlugin.periodicallyShow(
-      1,
-      reminder.title,
-      "sechual hi",
-      RepeatInterval.everyMinute,
-      notificationDetails,
-      payload: "payload",
-    );
-  }
-
   // to schedule a local notification
-  static Future showScheduleNotification(Reminder reminder) async {
+  static Future showScheduleNotification(ReminderEntity reminder) async {
     tz.initializeTimeZones();
     await flutterLocalNotificationsPlugin.zonedSchedule(
         reminder.hashCode,
         reminder.title,
         reminder.title,
-        tz.TZDateTime.from(reminder.dateTime, tz.local),
+        tz.TZDateTime.from(DateTime.parse(reminder.dateTime), tz.local),
         notificationDetails,
         androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
         uiLocalNotificationDateInterpretation:
@@ -65,7 +54,7 @@ class NotificationService {
         payload: reminder.title);
   }
 
-  static Future cancel(Reminder reminder) async {
+  static Future cancel(ReminderEntity reminder) async {
     await flutterLocalNotificationsPlugin.cancel(reminder.hashCode);
   }
 
