@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notesapp/features/reminders/domain/entities/reminder_entity.dart';
 import 'package:notesapp/features/reminders/presentation/cubit/reminders/reminders_cubit.dart';
+import 'package:notesapp/features/reminders/presentation/views/widgets/reminder_color_item.dart';
 
-import '../../../../../../core/app_colors.dart';
-import '../../../../../notes/presentation/widgets/color_item.dart';
+import '../../../../../core/app_colors.dart';
 
 class ReminderColorItemsListView extends StatefulWidget {
   final ReminderEntity? reminderEntity;
@@ -52,13 +52,15 @@ class _ReminderColorItemsListViewState
       builder: (context, state) {
         return SizedBox(
           height: 28 * 2,
+          width: MediaQuery.of(context).size.width,
           child: ListView.separated(
+            shrinkWrap: true,
             itemCount: AppColors.colorsList.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               return Builder(builder: (context) {
                 final color = AppColors.colorsList[index];
-                return ColorItem(
+                return ReminderColorItem(
                     onTap: () {
                       context.read<RemindersCubit>().changeColor(color);
                       setState(() {

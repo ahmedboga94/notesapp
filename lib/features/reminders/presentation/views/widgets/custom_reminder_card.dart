@@ -6,7 +6,7 @@ import 'package:notesapp/core/utils/confirm_to_delete.dart';
 import 'package:notesapp/features/reminders/domain/entities/reminder_entity.dart';
 import 'package:notesapp/features/reminders/presentation/cubit/reminders/reminders_cubit.dart';
 
-import '../../../../../../core/app_colors.dart';
+import '../../../../../core/app_colors.dart';
 import 'update_reminder_dialog_btn.dart';
 
 class CustomReminderCard extends StatelessWidget {

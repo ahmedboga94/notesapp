@@ -72,9 +72,7 @@ class _AddUpdateNoteFormState extends State<AddUpdateNoteForm> {
                 ? ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        final randomId = DateTime.now().millisecondsSinceEpoch;
-                        DateTime dateTime =
-                            DateTime.fromMillisecondsSinceEpoch(randomId);
+                        DateTime dateTime = DateTime.now();
                         String formattedDate =
                             DateFormat("MMMM dd, yy").format(dateTime);
 

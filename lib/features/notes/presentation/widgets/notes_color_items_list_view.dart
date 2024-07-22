@@ -5,7 +5,7 @@ import 'package:notesapp/features/notes/domain/entities/note_entity.dart';
 
 import '../../../../core/app_colors.dart';
 import '../cubit/notes/notes_cubit.dart';
-import 'color_item.dart';
+import 'note_color_item.dart';
 
 class NotesColorItemsListView extends StatefulWidget {
   final AddUpdateNoteEnum addEditNoteEnum;
@@ -55,7 +55,7 @@ class _NotesColorItemsListViewState extends State<NotesColorItemsListView> {
             itemBuilder: (context, index) {
               return Builder(builder: (context) {
                 final color = AppColors.colorsList[index];
-                return ColorItem(
+                return NoteColorItem(
                     onTap: () {
                       context.read<NotesCubit>().changeColor(color);
                       setState(() {

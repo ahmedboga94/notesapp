@@ -4,10 +4,10 @@ import 'package:go_router/go_router.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:notesapp/core/app_translate_keys.dart';
 
-import '../../../../../../core/app_colors.dart';
-import '../../../../../../core/utils/custom_show_dialog.dart';
-import '../../../../domain/entities/reminder_entity.dart';
-import '../../../cubit/reminders/reminders_cubit.dart';
+import '../../../../../core/app_colors.dart';
+import '../../../../../core/utils/custom_show_dialog.dart';
+import '../../../domain/entities/reminder_entity.dart';
+import '../../cubit/reminders/reminders_cubit.dart';
 import 'reminder_color_items_list_view.dart';
 
 class UpdateReminderDialogBtn extends StatefulWidget {
@@ -64,11 +64,11 @@ class _UpdateReminderDialogBtnState extends State<UpdateReminderDialogBtn> {
                     decoration: InputDecoration(hintText: context.contantKey),
                     validator: (value) =>
                         value!.isEmpty ? context.enterContentNoteKey : null,
-                    maxLines: 2,
+                    maxLines: 3,
                   ),
                   const SizedBox(height: 20),
-                  // ReminderColorItemsListView(
-                  //     reminderEntity: widget.reminderEntity, isUpdate: true),
+                  ReminderColorItemsListView(
+                      reminderEntity: widget.reminderEntity, isUpdate: true),
                   const SizedBox(height: 30),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.6,

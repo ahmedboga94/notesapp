@@ -7,10 +7,9 @@ import 'package:notesapp/core/app_colors.dart';
 import 'package:notesapp/core/app_translate_keys.dart';
 import 'package:notesapp/features/reminders/presentation/cubit/reminders/reminders_cubit.dart';
 
-import '../../../../../../core/app_assets.dart';
-import '../../../../../../core/app_routes.dart';
-import '../../../../../../core/services/app_search.dart';
-import '../../../../../../core/utils/confirm_to_delete.dart';
+import '../../../../../core/app_assets.dart';
+import '../../../../../core/app_routes.dart';
+import '../../../../../core/utils/confirm_to_delete.dart';
 
 class CustomRemindersAppBar extends StatelessWidget {
   const CustomRemindersAppBar({super.key});
