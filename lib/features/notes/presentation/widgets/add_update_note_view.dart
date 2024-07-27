@@ -23,27 +23,28 @@ class AddOrUpdateNoteView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(20),
       child: SingleChildScrollView(
-          child: BlocConsumer<NotesCubit, NotesState>(
-        listener: (context, state) {
-          if (state is SuccessNotesState) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                behavior: SnackBarBehavior.floating,
-                duration: const Duration(seconds: 2),
-                content: Text(addEditNoteEnum == AddUpdateNoteEnum.addNoteView
-                    ? context.addNoteKey
-                    : context.updateNoteKey)));
-            GoRouter.of(context).pop();
-          }
-          if (state is FailureNotesState) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text(state.errorMsg)));
-          }
-        },
-        builder: (context, state) {
-          return AddUpdateNoteForm(
-              addEditNoteEnum: addEditNoteEnum, noteEntity: noteEntity);
-        },
-      )),
+        child: BlocConsumer<NotesCubit, NotesState>(
+          listener: (context, state) {
+            if (state is SuccessNotesState) {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  behavior: SnackBarBehavior.floating,
+                  duration: const Duration(seconds: 2),
+                  content: Text(addEditNoteEnum == AddUpdateNoteEnum.addNoteView
+                      ? context.addNoteKey
+                      : context.updateNoteKey)));
+              GoRouter.of(context).pop();
+            }
+            if (state is FailureNotesState) {
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text(state.errorMsg)));
+            }
+          },
+          builder: (context, state) {
+            return AddUpdateNoteForm(
+                addEditNoteEnum: addEditNoteEnum, noteEntity: noteEntity);
+          },
+        ),
+      ),
     );
   }
 }

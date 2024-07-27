@@ -141,6 +141,12 @@ class _UpdateReminderDialogBtnState extends State<UpdateReminderDialogBtn> {
                                   BlocProvider.of<RemindersCubit>(context)
                                       .updateReminder(widget.reminderEntity);
                                   GoRouter.of(context).pop();
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                          behavior: SnackBarBehavior.floating,
+                                          duration: const Duration(seconds: 2),
+                                          content:
+                                              Text(context.updateReminderKey)));
                                 }
                               },
                               child: Text(context.updateKey)),

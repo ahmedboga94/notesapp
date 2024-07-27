@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:notesapp/core/app_colors.dart';
-import 'package:notesapp/features/notes/domain/entities/note_entity.dart';
+import 'package:notesapp/features/reminders/domain/entities/reminder_entity.dart';
 
-import '../../features/notes/presentation/views/notes_home_view/widgets/custom_note_card.dart';
+import '../../features/reminders/presentation/views/widgets/custom_reminder_card.dart';
 
-class AppSearchDelegate extends SearchDelegate<String> {
-  final List<NoteEntity> data;
+class AppSearchRemindersDelegate extends SearchDelegate<String> {
+  final List<ReminderEntity> dataReminders;
 
-  AppSearchDelegate(this.data);
+  AppSearchRemindersDelegate(this.dataReminders);
 
   @override
   ThemeData appBarTheme(BuildContext context) {
@@ -52,17 +52,19 @@ class AppSearchDelegate extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    final suggestions = data.where((notes) {
-      final noteTitle = notes.title.toLowerCase();
+    final suggestionsReminders = dataReminders.where((reminders) {
+      final reminderTitle = reminders.title.toLowerCase();
       final input = query.toLowerCase();
-      return noteTitle.contains(input);
+      return reminderTitle.contains(input);
     }).toList();
+
     return Padding(
       padding: const EdgeInsets.all(14),
       child: ListView.builder(
-        itemCount: suggestions.length,
+        itemCount: suggestionsReminders.length,
         itemBuilder: (context, index) {
-          return CustomNoteCard(noteEntity: suggestions[index]);
+          return CustomReminderCard(
+              reminderEntity: suggestionsReminders[index]);
         },
       ),
     );
@@ -70,17 +72,18 @@ class AppSearchDelegate extends SearchDelegate<String> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final suggestions = data.where((notes) {
-      final noteTitle = notes.title.toLowerCase();
+    final suggestionsReminders = dataReminders.where((reminders) {
+      final reminderTitle = reminders.title.toLowerCase();
       final input = query.toLowerCase();
-      return noteTitle.contains(input);
+      return reminderTitle.contains(input);
     }).toList();
     return Padding(
       padding: const EdgeInsets.all(14),
       child: ListView.builder(
-        itemCount: suggestions.length,
+        itemCount: suggestionsReminders.length,
         itemBuilder: (context, index) {
-          return CustomNoteCard(noteEntity: suggestions[index]);
+          return CustomReminderCard(
+              reminderEntity: suggestionsReminders[index]);
         },
       ),
     );

@@ -135,6 +135,14 @@ class _AddReminderFloatingActionBtnState
                                           .addReminder(addReminder);
                                       GoRouter.of(context).pop();
                                       dateTimeSelected = null;
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                              behavior:
+                                                  SnackBarBehavior.floating,
+                                              duration:
+                                                  const Duration(seconds: 2),
+                                              content: Text(
+                                                  context.addReminderKey)));
                                     }
                                   },
                                   child: Text(context.addKey))),

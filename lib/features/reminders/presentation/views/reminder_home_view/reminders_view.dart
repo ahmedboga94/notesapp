@@ -14,14 +14,15 @@ class RemindersView extends StatelessWidget {
     return BlocBuilder<RemindersCubit, RemindersState>(
       builder: (context, state) {
         return Scaffold(
-            appBar: PreferredSize(
-                preferredSize: Size.fromHeight(AppBar().preferredSize.height),
-                child: const CustomRemindersAppBar()),
-            floatingActionButton: Visibility(
-                visible:
-                    !context.read<RemindersCubit>().isMultiSelectionEnabled,
-                child: const AddReminderFloatingActionBtn()),
-            body: const RemindersBody());
+          appBar: PreferredSize(
+              preferredSize: Size.fromHeight(AppBar().preferredSize.height),
+              child: const CustomRemindersAppBar()),
+          floatingActionButton: Visibility(
+            visible: !context.read<RemindersCubit>().isMultiSelectionEnabled,
+            child: const AddReminderFloatingActionBtn(),
+          ),
+          body: const RemindersBody(),
+        );
       },
     );
   }

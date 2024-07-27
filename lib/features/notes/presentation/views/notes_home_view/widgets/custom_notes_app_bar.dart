@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:ionicons/ionicons.dart';
 import 'package:notesapp/core/app_colors.dart';
 import 'package:notesapp/core/app_translate_keys.dart';
 
 import '../../../../../../core/app_assets.dart';
 import '../../../../../../core/app_routes.dart';
-import '../../../../../../core/services/app_search.dart';
+import '../../../../../../core/services/app_search_notes.dart';
 import '../../../../../../core/utils/confirm_to_delete.dart';
 import '../../../cubit/notes/notes_cubit.dart';
 
@@ -77,7 +76,7 @@ class CustomNotesAppBar extends StatelessWidget {
                           onPressed: () {
                             showSearch(
                               context: context,
-                              delegate: AppSearchDelegate(state.notes),
+                              delegate: AppSearchNotesDelegate(state.notes),
                             );
                           },
                           icon: const Icon(Ionicons.search))
