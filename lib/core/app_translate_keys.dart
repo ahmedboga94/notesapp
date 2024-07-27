@@ -7,9 +7,9 @@ extension AppTranslateKeys on BuildContext {
   String get addNewNotesKey => translation(this).addNewNotesId;
   String get addNoteKey => translation(this).addNoteId;
   String get updateNoteKey => translation(this).updateNoteId;
-  String get titleKey => translation(this).titleId;
+  String get titleNoteKey => translation(this).titleNoteId;
   String get enterTitleNoteKey => translation(this).enterContentNoteId;
-  String get contantKey => translation(this).contentId;
+  String get contentNoteKey => translation(this).contentNoteId;
   String get enterContentNoteKey => translation(this).enterContentNoteId;
   String get addKey => translation(this).addId;
   String get updateKey => translation(this).updateId;
@@ -20,19 +20,16 @@ extension AppTranslateKeys on BuildContext {
 
   //Reminders
   String get remindersKey => translation(this).remindersId;
-  // String get addNewNotesKey => translation(this).addNewNotesId;
-  // String get addNoteKey => translation(this).addNoteId;
-  // String get updateNoteKey => translation(this).updateNoteId;
-  // String get titleKey => translation(this).titleId;
-  // String get enterTitleNoteKey => translation(this).enterContentNoteId;
-  // String get contantKey => translation(this).contentId;
-  // String get enterContentNoteKey => translation(this).enterContentNoteId;
-  // String get addKey => translation(this).addId;
-  // String get updateKey => translation(this).updateId;
-  // String get noteViewkey => translation(this).noteViewId;
-  // String get editNoteViewKey => translation(this).editNoteViewId;
-  // String get itemSelectedKey => translation(this).itemSelectedId;
-  // String get noItemSelectedKey => translation(this).noItemSelectedId;
+  String get addNewRemindersKey => translation(this).addNewRemindersId;
+  String get addReminderKey => translation(this).addReminderId;
+  String get updateReminderKey => translation(this).updateReminderId;
+  String get titleReminderKey => translation(this).titleReminderId;
+  String get enterTitleReminderKey => translation(this).enterTitleReminderId;
+  String get contentReminderKey => translation(this).contentReminderId;
+  String get enterContentReminderKey =>
+      translation(this).enterContentReminderId;
+  String get reminderViewkey => translation(this).reminderViewId;
+  String get noSelectedDateTimeKey => translation(this).noSelectedDateTimeId;
 
   //Settings
   String get settingsKey => translation(this).settingsId;

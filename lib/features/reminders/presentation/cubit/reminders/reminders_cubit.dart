@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notesapp/core/app_colors.dart';
+import 'package:notesapp/core/services/local_notification_service.dart';
 import 'package:notesapp/features/reminders/domain/entities/reminder_entity.dart';
 
 import 'package:notesapp/core/app_failures.dart';
@@ -31,6 +32,7 @@ class RemindersCubit extends Cubit<RemindersState> {
   Color selectedColor = AppColors.colorsList[0];
   final HashSet<ReminderEntity> _selectedItems = HashSet();
   bool isMultiSelectionEnabled = false;
+  DateTime? selectedDateTime;
 
   HashSet<ReminderEntity> get selectedItems => _selectedItems;
 
@@ -42,20 +44,32 @@ class RemindersCubit extends Cubit<RemindersState> {
     );
   }
 
-  void addReminder(ReminderEntity addReminder) {
+  void addReminder(ReminderEntity addReminder) async {
     addReminder.color = selectedColor.value;
     Either<Failure, Unit> note = addReminderUseCase.call(addReminder);
+    await NotificationService.showScheduleNotification(addReminder);
     foldMethod(note);
   }
 
-  void updateReminder(ReminderEntity updateReminder) {
+  void updateReminder(ReminderEntity updateReminder) async {
+    await NotificationService.cancel(updateReminder);
     updateReminder.color = selectedColor.value;
     Either<Failure, Unit> note = updateReminderUseCase.call(updateReminder);
+    if (updateReminder.isNotificationEnabled) {
+      await NotificationService.showScheduleNotification(updateReminder);
+    } else {
+      await NotificationService.cancel(updateReminder);
+    }
+
     foldMethod(note);
   }
 
-  void deleteReminder(ReminderEntity deleteReminder) {
+  void deleteReminder(ReminderEntity deleteReminder) async {
     Either<Failure, Unit> note = deleteReminderUseCase.call(deleteReminder);
+    if (deleteReminder.isNotificationEnabled) {
+      await NotificationService.cancel(deleteReminder);
+    }
+
     foldMethod(note);
   }
 
@@ -68,6 +82,17 @@ class RemindersCubit extends Cubit<RemindersState> {
       (fail) => emit(FailureRemindersState(fail.failureMessage)),
       (success) => getReminders(),
     );
+  }
+
+  void toggleNotification(bool isEnabled, ReminderEntity updateReminder) async {
+    updateReminder.isNotificationEnabled = isEnabled;
+    updateReminderUseCase.call(updateReminder);
+    if (isEnabled) {
+      await NotificationService.showScheduleNotification(updateReminder);
+    } else {
+      await NotificationService.cancel(updateReminder);
+    }
+    getReminders();
   }
 
 //////////// multi selection /////////////

@@ -28,25 +28,15 @@ class NotificationService {
     flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
 
-  // show a simple notification
-  static Future showSimpleNotification(ReminderEntity reminder) async {
-    await flutterLocalNotificationsPlugin.show(
-      0,
-      reminder.title,
-      "Hello",
-      notificationDetails,
-      payload: "My Channel",
-    );
-  }
-
   // to schedule a local notification
   static Future showScheduleNotification(ReminderEntity reminder) async {
     tz.initializeTimeZones();
+
     await flutterLocalNotificationsPlugin.zonedSchedule(
         reminder.hashCode,
         reminder.title,
-        reminder.title,
-        tz.TZDateTime.from(DateTime.parse(reminder.dateTime), tz.local),
+        reminder.subTitle,
+        tz.TZDateTime.from(reminder.dateTime, tz.local),
         notificationDetails,
         androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
         uiLocalNotificationDateInterpretation:
@@ -58,7 +48,6 @@ class NotificationService {
     await flutterLocalNotificationsPlugin.cancel(reminder.hashCode);
   }
 
-  // close all the notifications available
   static Future cancelAll() async {
     await flutterLocalNotificationsPlugin.cancelAll();
   }

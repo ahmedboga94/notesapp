@@ -48,14 +48,14 @@ class _AddUpdateNoteFormState extends State<AddUpdateNoteForm> {
         children: [
           TextFormField(
             controller: titleCtrl,
-            decoration: InputDecoration(hintText: context.titleKey),
+            decoration: InputDecoration(hintText: context.titleNoteKey),
             validator: (value) =>
                 value!.isEmpty ? context.enterTitleNoteKey : null,
           ),
           const SizedBox(height: 20),
           TextFormField(
             controller: subTitleCtrl,
-            decoration: InputDecoration(hintText: context.contantKey),
+            decoration: InputDecoration(hintText: context.contentNoteKey),
             validator: (value) =>
                 value!.isEmpty ? context.enterContentNoteKey : null,
             maxLines: 7,

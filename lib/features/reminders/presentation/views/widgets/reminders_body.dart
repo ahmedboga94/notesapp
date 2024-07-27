@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notesapp/core/app_translate_keys.dart';
 import 'package:notesapp/features/reminders/presentation/cubit/reminders/reminders_cubit.dart';
 
 import 'custom_reminder_card.dart';
@@ -37,7 +38,7 @@ class RemindersBody extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("context.addNewNotesKey",
+                        Text(context.addNewRemindersKey,
                             style: Theme.of(context).textTheme.headlineMedium),
                         const SizedBox(height: 20),
                         const Icon(Icons.arrow_downward,

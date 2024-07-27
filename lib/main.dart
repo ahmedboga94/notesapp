@@ -10,6 +10,7 @@ import 'core/services/app_hive_local.dart';
 import 'core/app_routes.dart';
 import 'core/app_theme.dart';
 import 'core/di.dart';
+import 'core/services/local_notification_service.dart';
 import 'features/notes/presentation/cubit/notes/notes_cubit.dart';
 import 'features/settings/presentation/cubit/theme/theme_cubit.dart';
 
@@ -17,6 +18,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initDi();
   await initHiveFlutter();
+  await NotificationService.init();
   runApp(const NotesApp());
 }
 

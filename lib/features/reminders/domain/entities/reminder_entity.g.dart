@@ -19,15 +19,16 @@ class ReminderEntityAdapter extends TypeAdapter<ReminderEntity> {
     return ReminderEntity(
       title: fields[0] as String,
       subTitle: fields[1] as String,
-      dateTime: fields[2] as String,
+      dateTime: fields[2] as DateTime,
       color: fields[3] as int,
+      isNotificationEnabled: fields[4] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, ReminderEntity obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.title)
       ..writeByte(1)
@@ -35,7 +36,9 @@ class ReminderEntityAdapter extends TypeAdapter<ReminderEntity> {
       ..writeByte(2)
       ..write(obj.dateTime)
       ..writeByte(3)
-      ..write(obj.color);
+      ..write(obj.color)
+      ..writeByte(4)
+      ..write(obj.isNotificationEnabled);
   }
 
   @override

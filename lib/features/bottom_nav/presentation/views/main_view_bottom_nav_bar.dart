@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:notesapp/core/app_translate_keys.dart';
 import 'package:notesapp/core/utils/two_bloc_builder.dart';
 import 'package:notesapp/features/notes/presentation/cubit/notes/notes_cubit.dart';
 import 'package:notesapp/features/reminders/presentation/cubit/reminders/reminders_cubit.dart';
@@ -40,14 +41,14 @@ class _MainViewState extends State<MainView> {
                   _currentIndex = index;
                 });
               },
-              items: const [
+              items: [
                 BottomNavigationBarItem(
-                  icon: Icon(Ionicons.document),
-                  label: "Notes",
+                  icon: const Icon(Ionicons.document),
+                  label: context.notesKey,
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Ionicons.notifications),
-                  label: "Reminders",
+                  icon: const Icon(Ionicons.notifications),
+                  label: context.remindersKey,
                 ),
               ],
             ),

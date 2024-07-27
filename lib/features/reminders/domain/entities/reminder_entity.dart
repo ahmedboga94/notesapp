@@ -9,14 +9,17 @@ class ReminderEntity extends HiveObject {
   @HiveField(1)
   String subTitle;
   @HiveField(2)
-  final String dateTime;
+  DateTime dateTime;
   @HiveField(3)
   int color;
+  @HiveField(4)
+  bool isNotificationEnabled;
 
   ReminderEntity({
     required this.title,
     required this.subTitle,
     required this.dateTime,
     required this.color,
+    required this.isNotificationEnabled,
   });
 }
