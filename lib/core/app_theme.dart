@@ -33,7 +33,7 @@ class AppThemes {
       textButtonTheme: TextButtonThemeData(
           style: ButtonStyle(
               foregroundColor:
-                  WidgetStateProperty.all(AppColors.lightGreyColor))),
+                  WidgetStateProperty.all(AppColors.lessdarkColor))),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
           foregroundColor: AppColors.lightGreyColor,
           backgroundColor: AppColors.primaryColor),
