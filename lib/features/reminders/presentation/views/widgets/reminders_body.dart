@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notesapp/core/app_assets.dart';
+import 'package:notesapp/core/app_colors.dart';
 import 'package:notesapp/core/app_translate_keys.dart';
 import 'package:notesapp/features/reminders/presentation/cubit/reminders/reminders_cubit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../../core/app_strings.dart';
+import '../../../../../core/di.dart';
 import 'custom_reminder_card.dart';
 
 class RemindersBody extends StatelessWidget {
@@ -24,25 +29,35 @@ class RemindersBody extends StatelessWidget {
                       }
                     },
                     child: Padding(
-                        padding: const EdgeInsets.all(14),
-                        child: ListView.builder(
-                            itemCount: state.reminders.length,
-                            itemBuilder: (context, index) {
-                              return CustomReminderCard(
-                                reminderEntity: state.reminders[index],
-                                isMultiSelection: true,
-                              );
-                            })),
+                      padding: const EdgeInsets.all(14),
+                      child: ListView.builder(
+                        itemCount: state.reminders.length,
+                        itemBuilder: (context, index) {
+                          return CustomReminderCard(
+                            reminderEntity: state.reminders[index],
+                            isMultiSelection: true,
+                          );
+                        },
+                      ),
+                    ),
                   )
                 : Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(context.addNewRemindersKey,
-                            style: Theme.of(context).textTheme.headlineMedium),
+                            style: Theme.of(context).textTheme.headlineSmall),
                         const SizedBox(height: 20),
-                        const Icon(Icons.arrow_downward,
-                            size: 40, color: Colors.grey),
+                        Transform.flip(
+                          flipX: di<SharedPreferences>()
+                                  .getString(AppStrings.setLang) ==
+                              AppStrings.setArabic,
+                          child: Image.asset(
+                            AppAssets.arrowAdd,
+                            scale: 1.5,
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
                       ],
                     ),
                   )

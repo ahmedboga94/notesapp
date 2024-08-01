@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notesapp/core/app_translate_keys.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../../../core/app_assets.dart';
+import '../../../../../../core/app_colors.dart';
+import '../../../../../../core/app_strings.dart';
+import '../../../../../../core/di.dart';
 import '../../../cubit/notes/notes_cubit.dart';
 import 'custom_note_card.dart';
 
@@ -39,10 +44,18 @@ class NotesBody extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(context.addNewNotesKey,
-                            style: Theme.of(context).textTheme.headlineMedium),
+                            style: Theme.of(context).textTheme.headlineSmall),
                         const SizedBox(height: 20),
-                        const Icon(Icons.arrow_downward,
-                            size: 40, color: Colors.grey),
+                        Transform.flip(
+                          flipX: di<SharedPreferences>()
+                                  .getString(AppStrings.setLang) ==
+                              AppStrings.setArabic,
+                          child: Image.asset(
+                            AppAssets.arrowAdd,
+                            scale: 1.5,
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
                       ],
                     ),
                   )

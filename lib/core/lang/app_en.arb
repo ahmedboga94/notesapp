@@ -1,6 +1,6 @@
 {
   "notesId" : "Notes",
- "addNewNotesId": "Add New Notes from here",
+ "addNewNotesId": "Add new Notes from here",
   "addNoteId" : "Note was added successfully",
   "updateNoteId" : "Note updated successfully",
   "titleNoteId" : "Note Title",
@@ -14,7 +14,7 @@
   "itemSelectedId":"Items Selected",
   "noItemSelectedId":"No Items Selected",
   "remindersId":"Reminders",
-  "addNewRemindersId":"Add New Reminders from here",
+  "addNewRemindersId":"Add new Reminders from here",
   "addReminderId":"ٌReminder was added successfully",
   "updateReminderId":"ٌReminder was updated successfully",
   "titleReminderId":"ٌReminder Title",
