@@ -30,6 +30,8 @@ extension AppTranslateKeys on BuildContext {
       translation(this).enterContentReminderId;
   String get reminderViewkey => translation(this).reminderViewId;
   String get noSelectedDateTimeKey => translation(this).noSelectedDateTimeId;
+  String get enterCorrectDateTimeKey =>
+      translation(this).enterCorrectDateTimeId;
 
   //Settings
   String get settingsKey => translation(this).settingsId;
@@ -46,5 +48,9 @@ extension AppTranslateKeys on BuildContext {
   String get langSelectedKey => translation(this).langSelectedId;
   String get selectLanguageKey => translation(this).selectLangId;
   String get arabicKey => translation(this).arabicLangId;
-  String get englishKey => translation(this).englishLang;
+  String get englishKey => translation(this).englishLangId;
+
+  String get notificationKey => translation(this).notificationId;
+  String get enableNotificationKey => translation(this).enableNotificationId;
+  String get disableNotificationKey => translation(this).disableNotificationId;
 }

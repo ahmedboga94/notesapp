@@ -23,6 +23,7 @@
   "enterContentReminderId":"ادخل محتوى التذكير من فضلك",
   "reminderViewId":"عرض التذكير",
   "noSelectedDateTimeId":"لم يتم تحديد الوقت والتاريخ",
+  "enterCorrectDateTimeId":"ادخل بيانات الوقت والتاريخ الصحيحة",
   "settingsId": "الإعدادات",
   "themeId":"المظهر",
   "lightThemeId":"المظهر الفاتح",
@@ -32,9 +33,13 @@
   "langId":"اللغة",
   "selectLangId":"اختيار اللغة",
   "arabicLangId":"العربية",
-  "englishLang":"الإنجليزية",
+  "englishLangId":"الإنجليزية",
   "langSelectedId":"العربية",
+  "notificationId":"الإشعارات",
+  "enableNotificationId":"الإشعارات مفعلة",
+  "disableNotificationId":"لم يتم تفعيل الإشعارات",
   "okId":"موافق",
   "cancelId":"إلغاء",
   "deleteDescrpId":"هل انت متأكد من الحذف؟"
+
 }

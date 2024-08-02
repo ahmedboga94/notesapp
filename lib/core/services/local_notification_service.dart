@@ -3,9 +3,12 @@ import 'package:notesapp/features/reminders/domain/entities/reminder_entity.dart
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
+import '../../features/bottom_nav/presentation/cubit/bottom_nav_cubit.dart';
+
 class NotificationService {
   static final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
+
   static NotificationDetails notificationDetails = const NotificationDetails(
       android: AndroidNotificationDetails(
     "channelId",
@@ -13,6 +16,13 @@ class NotificationService {
     priority: Priority.high,
     importance: Importance.high,
   ));
+
+  static onTap(NotificationResponse notificationResponse) {
+    if (notificationResponse.payload != null) {
+      final int targetPage = int.parse(notificationResponse.payload!);
+      BottomNavCubit().updateIndex(targetPage);
+    }
+  }
 
   static Future init() async {
     flutterLocalNotificationsPlugin
@@ -25,7 +35,9 @@ class NotificationService {
     const InitializationSettings initializationSettings =
         InitializationSettings(android: initializationSettingsAndroid);
 
-    flutterLocalNotificationsPlugin.initialize(initializationSettings);
+    flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onDidReceiveNotificationResponse: onTap,
+        onDidReceiveBackgroundNotificationResponse: onTap);
   }
 
   // to schedule a local notification
@@ -33,15 +45,16 @@ class NotificationService {
     tz.initializeTimeZones();
 
     await flutterLocalNotificationsPlugin.zonedSchedule(
-        reminder.hashCode,
-        reminder.title,
-        reminder.subTitle,
-        tz.TZDateTime.from(reminder.dateTime, tz.local),
-        notificationDetails,
-        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-        uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.absoluteTime,
-        payload: reminder.title);
+      reminder.hashCode,
+      reminder.title,
+      reminder.subTitle,
+      tz.TZDateTime.from(reminder.dateTime, tz.local),
+      notificationDetails,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+      payload: "1",
+    );
   }
 
   static Future cancel(ReminderEntity reminder) async {

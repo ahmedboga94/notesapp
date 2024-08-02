@@ -61,13 +61,6 @@ class _AddReminderFloatingActionBtnState
   }
 
   @override
-  void dispose() {
-    titleCtrl.dispose();
-    subTitleCtrl.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: () {
@@ -123,26 +116,36 @@ class _AddReminderFloatingActionBtnState
                               child: ElevatedButton(
                                   onPressed: () {
                                     if (_formKey.currentState!.validate()) {
-                                      final ReminderEntity addReminder =
-                                          ReminderEntity(
-                                              title: titleCtrl.text,
-                                              subTitle: subTitleCtrl.text,
-                                              dateTime: dateTimeSelected!,
-                                              color: Colors.yellow.value,
-                                              isNotificationEnabled: true);
+                                      if (dateTimeSelected!
+                                          .isAfter(DateTime.now())) {
+                                        final ReminderEntity addReminder =
+                                            ReminderEntity(
+                                                title: titleCtrl.text,
+                                                subTitle: subTitleCtrl.text,
+                                                dateTime: dateTimeSelected!,
+                                                color: Colors.yellow.value,
+                                                isNotificationEnabled: true);
 
-                                      BlocProvider.of<RemindersCubit>(context)
-                                          .addReminder(addReminder);
-                                      GoRouter.of(context).pop();
-                                      dateTimeSelected = null;
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
-                                              behavior:
-                                                  SnackBarBehavior.floating,
-                                              duration:
-                                                  const Duration(seconds: 2),
-                                              content: Text(
-                                                  context.addReminderKey)));
+                                        BlocProvider.of<RemindersCubit>(context)
+                                            .addReminder(addReminder);
+                                        GoRouter.of(context).pop();
+                                        dateTimeSelected = null;
+                                        titleCtrl.clear();
+                                        subTitleCtrl.clear();
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(SnackBar(
+                                                behavior:
+                                                    SnackBarBehavior.floating,
+                                                duration:
+                                                    const Duration(seconds: 2),
+                                                content: Text(
+                                                    context.addReminderKey)));
+                                      } else {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(SnackBar(
+                                                content: Text(context
+                                                    .enterCorrectDateTimeKey)));
+                                      }
                                     }
                                   },
                                   child: Text(context.addKey))),

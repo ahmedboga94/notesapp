@@ -137,16 +137,24 @@ class _UpdateReminderDialogBtnState extends State<UpdateReminderDialogBtn> {
                                       subTitleCtrl.text;
                                   widget.reminderEntity.dateTime =
                                       dateTimeSelected!;
-
-                                  BlocProvider.of<RemindersCubit>(context)
-                                      .updateReminder(widget.reminderEntity);
-                                  GoRouter.of(context).pop();
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                          behavior: SnackBarBehavior.floating,
-                                          duration: const Duration(seconds: 2),
-                                          content:
-                                              Text(context.updateReminderKey)));
+                                  if (dateTimeSelected!
+                                      .isAfter(DateTime.now())) {
+                                    BlocProvider.of<RemindersCubit>(context)
+                                        .updateReminder(widget.reminderEntity);
+                                    GoRouter.of(context).pop();
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                            behavior: SnackBarBehavior.floating,
+                                            duration:
+                                                const Duration(seconds: 2),
+                                            content: Text(
+                                                context.updateReminderKey)));
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                            content: Text(context
+                                                .enterCorrectDateTimeKey)));
+                                  }
                                 }
                               },
                               child: Text(context.updateKey)),
