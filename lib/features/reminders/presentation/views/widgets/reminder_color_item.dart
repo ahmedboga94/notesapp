@@ -17,7 +17,7 @@ class ReminderColorItem extends StatelessWidget {
       onTap: onTap,
       child: CircleAvatar(
           radius: 30,
-          backgroundColor: isSelected ? AppColors.lessdarkColor : color,
+          backgroundColor: isSelected ? AppColors.primaryColor : color,
           child: CircleAvatar(
             radius: 25,
             backgroundColor: color,

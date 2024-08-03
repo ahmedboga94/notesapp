@@ -14,14 +14,15 @@ class AppSearchRemindersDelegate extends SearchDelegate<String> {
   ThemeData appBarTheme(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     return theme.copyWith(
-        inputDecorationTheme: const InputDecorationTheme(
-            hintStyle: TextStyle(color: AppColors.lightGreyColor),
-            border: InputBorder.none),
-        textSelectionTheme:
-            const TextSelectionThemeData(cursorColor: AppColors.lightGreyColor),
-        textTheme: const TextTheme(
-          titleLarge: TextStyle(color: AppColors.lightGreyColor),
-        ));
+      inputDecorationTheme: const InputDecorationTheme(
+          hintStyle: TextStyle(color: AppColors.lightGreyColor),
+          border: InputBorder.none),
+      textSelectionTheme:
+          const TextSelectionThemeData(cursorColor: AppColors.lightGreyColor),
+      // textTheme: const TextTheme(
+      //   titleLarge: TextStyle(color: AppColors.lightGreyColor),
+      // )
+    );
   }
 
   @override

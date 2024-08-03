@@ -18,10 +18,7 @@ class NotificationService {
   ));
 
   static onTap(NotificationResponse notificationResponse) {
-    if (notificationResponse.payload != null) {
-      final int targetPage = int.parse(notificationResponse.payload!);
-      BottomNavCubit().updateIndex(targetPage);
-    }
+    BottomNavCubit().updateIndex(1);
   }
 
   static Future init() async {
@@ -53,7 +50,6 @@ class NotificationService {
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
-      payload: "1",
     );
   }
 
